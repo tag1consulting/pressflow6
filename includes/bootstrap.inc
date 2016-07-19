@@ -890,19 +890,6 @@ class VariableCache extends DrupalCacheArray {
       // 30 seconds then clear the cache.
       lock_wait($lock_name);
       cache_clear_all($this->cid, $this->bin);
-    else {
-      // Wait for another request that is already doing this work.
-      lock_wait('variable_cache_regenerate');
-
-      // Run the function again. Try a limited number of times to avoid
-      // infinite recursion if the database connection is invalid for
-      // some reason, e.g., mysqld restart, loss of network, etc.
-      $recursion_depth++;
-      if ($recursion_depth < 50) {
-        return variable_init($conf, $regenerate, $recursion_depth);
-      }
-
-      $variables = array();
     }
   }
 }
@@ -1033,8 +1020,6 @@ function variable_set($name, $value) {
   if (!empty($current_db)) {
     db_set_active($current_db);
   }
-
-  variable_cache_rebuild();
 }
 
 /**
@@ -1061,19 +1046,6 @@ function variable_del($name) {
   }
   else {
     cache_clear_all('variables', 'cache');
-  }
-
-  variable_cache_rebuild();
-}
-
-/**
- * Schedules a rebuild of the variable cache on shutdown.
- */
-function variable_cache_rebuild() {
-  static $shutdown_registered = FALSE;
-  if (!$shutdown_registered) {
-    register_shutdown_function('variable_init', array(), TRUE);
-    $shutdown_registered = TRUE;
   }
 }
 
