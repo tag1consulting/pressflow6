@@ -461,6 +461,7 @@ function module_implements($hook, $sort = FALSE, $reset = FALSE, $write_cache = 
     $implementations = array();
     $verified = array();
     cache_set('module_implements', array());
+    cache_clear_all('system_cache_tables', 'cache');
     return;
   }
 
