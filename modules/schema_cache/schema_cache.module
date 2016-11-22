@@ -20,7 +20,7 @@ function schema_cache_schema_get($table = NULL, $rebuild = FALSE) {
     $schema = schema_cache_get_complete_schema($rebuild);
   }
   elseif (!isset($schema)) {
-    $schema = new schemaCache();
+    $schema = new SchemaCache();
   }
 
   if (!isset($table)) {
@@ -41,7 +41,7 @@ class SchemaCache extends DrupalCacheArray {
 
   public function __construct() {
     // Cache by request method.
-    parent::__construct('schema:runtime:' . $_SERVER['REQUEST_METHOD'] == 'GET', 'cache');
+    parent::__construct('schema:runtime:' . ($_SERVER['REQUEST_METHOD'] == 'GET'), 'cache');
   }
 
   protected function resolveCacheMiss($offset) {
