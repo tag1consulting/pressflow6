@@ -1,3 +1,62 @@
+Drupal 6.38-p4, 2018-03-28 - SA-CORE-2018-002
+
+A bugfix introduced in -p3, affecting sites using PHP 5.x.
+
+
+Drupal 6.38-p3, 2018-03-28 - SA-CORE-2018-002
+
+A remote code execution vulnerability exists within multiple subsystems.
+This potentially allows attackers to exploit multiple attack vectors on a
+Drupal site, which could result in the site being completely compromised.
+
+The security team has written an FAQ about this issue.
+https://groups.drupal.org/security/faq-2018-002
+
+Upstream reference:
+https://www.drupal.org/sa-core-2018-002
+
+
+Drupal 6.38-p2, 2018-02-21 - SA-CORE-2018-001
+---------------------------------------------
+
+CVE-2017-6927: JavaScript cross-site scripting prevention is incomplete
+
+Drupal has a Drupal.checkPlain() JavaScript function which is used to
+escape potentially dangerous text before outputting it to HTML (as
+JavaScript output is not auto-escaped by Drupal 6).  This function does
+not correctly handle all methods of injecting malicious HTML, leading
+to a cross-site scripting vulnerability under certain circumstances.
+
+The PHP functions which Drupal provides for HTML escaping are not affected.
+
+CVE-2017-6932: External link injection on 404 pages when linking to the
+current page
+
+Drupal core has an external link injection vulnerability when the language
+switcher block is used. A similar vulnerability exists in various custom
+and contributed modules. This vulnerability could allow an attacker to
+trick users into unwillingly navigating to an external site.
+
+Upstream reference:
+https://www.drupal.org/sa-core-2018-001
+
+
+Drupal 6.38-p1, 2016-08-10 - SA-CORE-2016-003
+---------------------------------------------
+
+The provided patch will mitigate possible exploits of the HTTP_PROXY
+header in Drupal 6. There are no currently known vectors of this
+exploit in Drupal 6, however, we still advise blocking the HTTP_PROXY
+header either with this patch for simple Apache installations (the
+patch includes rules in .htaccess) or via your own configuration if
+you use another webserver and/or you have disabled htaccess. You can
+read more about this issue here: https://www.drupal.org/SA-CORE-2016-003
+and here: https://httpoxy.org/
+
+Almost all site administrators will want to take the infrastructure
+actions suggested in httppoxy.org and a complete solution to this
+vulnerability.
+
 Drupal 6.38, 2016-02-24 - Final release
 ---------------------------------------
 - Fixed security issues (multiple vulnerabilities). See SA-CORE-2016-001.
