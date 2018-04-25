@@ -1,3 +1,17 @@
+Drupal 6.38-p5, 2018-04-25 - SA-CORE-2018-004
+
+A remote code execution vulnerability may exist within multiple subsystems of
+Drupal 6.  This potentially allows attackers to exploit multiple attack vectors
+on a Drupal site, which could result in the site being compromised. This
+vulnerability is related to Drupal core - Highly critical - Remote Code
+Execution - SA-CORE-2018-002 (fixed by Tag1 Quo -p3 and -p4).  While
+SA-CORE-2018-002 is being exploited in the wild, there are not yet any known
+exploits for SA-CORE-2018-004.
+
+Upstream reference:
+https://www.drupal.org/sa-core-2018-004
+
+
 Drupal 6.38-p4, 2018-03-28 - SA-CORE-2018-002
 
 A bugfix introduced in -p3, affecting sites using PHP 5.x.
